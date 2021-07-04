@@ -1,11 +1,17 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
+import { Exclude } from "class-transformer";
 import { v4 as uuid } from "uuid";
 
 @Entity("users")
 class User {
-
   @PrimaryColumn()
-  readonly id: string; //readonly é só para Leitura
+  readonly id: string;
 
   @Column()
   name: string;
@@ -16,6 +22,7 @@ class User {
   @Column()
   admin: boolean;
 
+  @Exclude()
   @Column()
   password: string;
 
@@ -30,8 +37,6 @@ class User {
       this.id = uuid();
     }
   }
-
 }
-
 
 export { User };
